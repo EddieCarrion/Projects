@@ -1,9 +1,9 @@
 import React from "react"
 
-const board = ({value}) => {
+const board = ({value, index, displayFunction }) => {
     return (
         
-            <div className="tiles">
+            <div className="tiles" onClick={()=>displayFunction(index)}>
                 {value}
             </div>
             
