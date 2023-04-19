@@ -5,22 +5,41 @@ import "./App.css"
 const App = () => {
   
   const [values,setValues] = useState(Array(9).fill("?"))
-  
-  const displayFunction = (index) => {
-    setValues((prevalues)=>{
-      const newValues = [...prevalues]
-      newValues[index]= "🌲"
-      return newValues
-    })
+  const [treasureIndex, setTreasureIndex] = useState(null)
+  const [bombIndex, setbombIndex] = useState(null)
+  const calculateIndex = () => {
+    const newTreasureIndex = Math.floor(Math.random()*9)
+    setTreasureIndex(newTreasureIndex)
+    let newBombIndex 
+    do {
+      newBombIndex = Math.floor(Math.random()*9)
+    } while(newBombIndex===newTreasureIndex)
+    setbombIndex(newBombIndex)
   }
-  const tiles = values.map((value,index)=>(
-    <Board key={index} value={value} index={index} displayFunction={displayFunction}/>
-  ))
+  useState(()=>{
+    calculateIndex()
+  },[])
+  const displayFunction = (index) => {
+    const newValue = values.slice()
+    let trueValue
+    if (index === treasureIndex){
+      trueValue = "💎"
+    } else if (index === bombIndex){
+      trueValue = "💣"
+    } else {
+      trueValue = "🌲"
+    }
+    newValue[index] = trueValue
+    setValues(newValue)
+  }
+ 
   return (
     <>
       <h1>Hello World</h1>
      <div className="container"> 
-      {tiles} 
+      {values.map((value,index)=>(
+         <Board key={index} value={value} displayFunction={()=>displayFunction(index)}/>
+      ))}
      
      </div>
     </>
