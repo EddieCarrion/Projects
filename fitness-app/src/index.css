@@ -1,3 +1,8 @@
+*{
+  margin:0;
+  padding:0;
+}
+
 .card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -14,14 +19,27 @@
 }
 
 /* Add some padding inside the card container */
-.container {
-  padding: 2px 16px;
-}
+
+
 .card img{
   width: 100%;
   height:70%;
   object-fit: cover;
 }
 .container {
+  width:100%;
+  text-align: center;
+  font-size: 30px;
+  height: 30%;
   
+}
+.container button {
+  width: 20%;
+  height: 30%;
+  margin-top: -50%;
+}
+.container h2 {
+  margin:5% 0;
+  
+
 }
